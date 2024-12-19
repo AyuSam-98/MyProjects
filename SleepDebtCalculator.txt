@@ -1,0 +1,43 @@
+const getSleepHours = day => {
+  switch(day.toLowerCase()){
+    case 'monday':
+      return 8;
+      break;
+    case 'tuesday' :
+      return 6;
+      break;
+    case 'wednesday' :
+      return 7;
+      break;
+    case 'thursday' :
+      return 7;
+      break;
+    case 'friday' :
+      return 5;
+      break;
+    case 'saturday' :
+      return 6;
+      break;
+    case 'sunday' :
+      return 8;
+      break;
+  }
+}
+
+const getActualSleepHours = () => getSleepHours('Monday') + getSleepHours('Tuesday') + getSleepHours('Wednesday') + getSleepHours('Thursday') + getSleepHours('Friday') + getSleepHours('Saturday') + getSleepHours('Sunday'); // implicit return
+
+const getIdealSleepHours = (hours) => {
+  return hours*7;
+};
+
+const calculateSleepDebt = () => {
+  const actualSleepHours = getActualSleepHours();
+  console.log('Actual Sleep Hours in the Week : ' + actualSleepHours);
+  const idealSleepHours = getIdealSleepHours(7);
+  console.log('Ideal Sleep Hours : ' + idealSleepHours);
+  if(actualSleepHours === idealSleepHours) return 'User got the perfect amount of sleep, which is ' + actualSleepHours + ' hours.'
+  else if(actualSleepHours > idealSleepHours) return 'User got ' + (actualSleepHours-idealSleepHours) + ' hours more sleep than needed.'
+  else return 'User should get ' + (idealSleepHours-actualSleepHours) + ' hours of more rest.'
+}
+
+console.log(calculateSleepDebt());
